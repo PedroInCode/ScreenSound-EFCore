@@ -29,8 +29,6 @@ internal class ArtistaDAL
             Artista artista = new(nomeArtista, bioArtista) { Id = idArtista };
             lista.Add(artista);
         }
-        return lista;
-    }
 
     public void Adicionar(Artista artista)
     {
