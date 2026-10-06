@@ -43,4 +43,9 @@ internal class ArtistaDAL
             _context.SaveChanges();
         }
     }
+
+    public Artista RecuperarPeloNome(string nome)
+    {
+        return _context.Artistas.FirstOrDefault(a => a.Nome == nome);
+    }
 }
