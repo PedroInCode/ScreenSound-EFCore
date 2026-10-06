@@ -2,35 +2,8 @@
 using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
-try
-{
-    var context = new ScreenSoundContext();
-    var artistaDAL = new ArtistaDAL(context);
-
-    var novoArtista = new Artista("Legião Urbana", "Banda de rock brasileira.") { Id = 2002 };
-    artistaDAL.Atualizar(novoArtista);
-    artistaDAL.Deletar(2003);
-
-    var listaArtistas = artistaDAL.Listar();
-
-    foreach (var artista in listaArtistas)
-    {
-        Console.WriteLine($"Artista: {artista.Nome}, Bio: {artista.Bio}, Id: {artista.Id}");
-    }
-}
-catch(Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
-
-return;
-
-Artista ira = new Artista("Ira!", "Banda Ira!");
-Artista beatles = new("The Beatles", "Banda The Beatles");
-
-Dictionary<string, Artista> artistasRegistrados = new();
-artistasRegistrados.Add(ira.Nome, ira);
-artistasRegistrados.Add(beatles.Nome, beatles);
+var context = new ScreenSoundContext();
+var artistaDAL = new ArtistaDAL(context);
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuRegistrarArtista());
