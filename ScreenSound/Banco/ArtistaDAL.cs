@@ -10,35 +10,8 @@ namespace ScreenSound.Banco;
 
 internal class ArtistaDAL : DAL<Artista>
 {
-    private readonly ScreenSoundContext _context;
-
-    public ArtistaDAL(ScreenSoundContext context)
-    {
-        _context = context;
-    }
-
-    public override IEnumerable<Artista> Listar()
-    {
-        return _context.Artistas.ToList();
-    }
-
-    public override void Adicionar(Artista artista)
-    {
-        _context.Artistas.Add(artista);
-        _context.SaveChanges();
-    }
-
-    public override void Atualizar(Artista artista)
-    {
-        _context.Artistas.Update(artista);
-        _context.SaveChanges();
-    }
-
-    public override void Deletar(Artista artista)
-    {
-        _context.Artistas.Remove(artista);
-        _context.SaveChanges(); 
-    }
+    public ArtistaDAL(ScreenSoundContext context) : base(context) { }
+    
 
     public Artista? RecuperarPeloNome(string nome)
     {

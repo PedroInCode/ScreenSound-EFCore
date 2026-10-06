@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace ScreenSound.Banco;
 
-internal abstract class DAL<T>
+internal abstract class DAL<T> where T : class
 {
-    public abstract IEnumerable<T> Listar();
-    public abstract void Adicionar(T objeto);
-    public abstract void Atualizar(T objeto);
-    public abstract void Deletar(T objeto);
+    protected readonly ScreenSoundContext _context;
+
+    protected DAL(ScreenSoundContext context)
+    {
+        _context = context;
+    }
+
+    public IEnumerable<T> Listar() => _context.Set<T>().ToList();
+    public void Adicionar(T objeto) => _context.Set<T>().Add(objeto);
+    public void Atualizar(T objeto) => _context.Set<T>().Update(objeto);
+    public void Deletar(T objeto) => _context.Set<T>().Remove(objeto);
     
 }
