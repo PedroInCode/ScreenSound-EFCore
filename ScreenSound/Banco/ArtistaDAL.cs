@@ -44,8 +44,12 @@ internal class ArtistaDAL
         }
     }
 
-    public Artista RecuperarPeloNome(string nome)
+    public Artista? RecuperarPeloNome(string nome)
     {
-        return _context.Artistas.FirstOrDefault(a => a.Nome == nome);
+        if(string.IsNullOrWhiteSpace(nome))
+        {
+            throw new ArgumentException("O nome do artista não pode ser nulo ou vazio.", nameof(nome));
+        }
+        return _context.Artistas.FirstOrDefault(a => a.Nome.Equals(nome));
     }
 }
