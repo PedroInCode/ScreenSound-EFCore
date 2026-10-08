@@ -22,7 +22,8 @@ internal class DAL<T> where T : class
     public void Atualizar(T objeto) => _context.Set<T>().Update(objeto);
     public void Deletar(T objeto) => _context.Set<T>().Remove(objeto);
     public T? RecuperarPor(Func<T, bool> condicao) => _context.Set<T>().FirstOrDefault();
-    
+    public IEnumerable<T> ListarPor(Func<T, bool> condicao) => _context.Set<T>().Where(condicao).ToList();
+
 
 
 }
